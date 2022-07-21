@@ -8,7 +8,7 @@ using SoccerKing.Api.Data.Context;
 
 namespace SoccerKing.Api.Data.Migrations
 {
-    [DbContext(typeof(MyContext))]
+    [DbContext(typeof(MyDbContext))]
     partial class MyContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

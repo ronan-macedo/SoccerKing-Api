@@ -3,23 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerKing.Api.Application", "SoccerKing.Api.Application\SoccerKing.Api.Application.csproj", "{C826A09C-CD54-4526-8585-0F9AF4D95715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerKing.Api.Application", "src\SoccerKing.Api.Application\SoccerKing.Api.Application.csproj", "{C826A09C-CD54-4526-8585-0F9AF4D95715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerKing.Api.Domain", "SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj", "{E558A853-7CCD-4958-8BB9-C698A4FB23A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerKing.Api.Domain", "src\SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj", "{E558A853-7CCD-4958-8BB9-C698A4FB23A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerKing.Api.CrossCutting", "SoccerKing.Api.CrossCutting\SoccerKing.Api.CrossCutting.csproj", "{FCEABAE5-8A41-498E-B00B-45E80FCACDED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerKing.Api.CrossCutting", "src\SoccerKing.Api.CrossCutting\SoccerKing.Api.CrossCutting.csproj", "{FCEABAE5-8A41-498E-B00B-45E80FCACDED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerKing.Api.Data", "SoccerKing.Api.Data\SoccerKing.Api.Data.csproj", "{61CB2DD3-B5D9-49C4-BE2B-B56343F284DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerKing.Api.Data", "src\SoccerKing.Api.Data\SoccerKing.Api.Data.csproj", "{61CB2DD3-B5D9-49C4-BE2B-B56343F284DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerKing.Api.Service", "SoccerKing.Api.Service\SoccerKing.Api.Service.csproj", "{70C37BD8-9FF1-4831-9BB1-781CCFEEA508}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerKing.Api.Service", "src\SoccerKing.Api.Service\SoccerKing.Api.Service.csproj", "{70C37BD8-9FF1-4831-9BB1-781CCFEEA508}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E170C66-4981-437F-8471-FA704BF23210}"
 EndProject
 Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6A840728-C3B7-4D40-8F05-72400B90D4C3}
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -89,5 +85,18 @@ Global
 		{70C37BD8-9FF1-4831-9BB1-781CCFEEA508}.Release|x64.Build.0 = Release|Any CPU
 		{70C37BD8-9FF1-4831-9BB1-781CCFEEA508}.Release|x86.ActiveCfg = Release|Any CPU
 		{70C37BD8-9FF1-4831-9BB1-781CCFEEA508}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C826A09C-CD54-4526-8585-0F9AF4D95715} = {8E170C66-4981-437F-8471-FA704BF23210}
+		{E558A853-7CCD-4958-8BB9-C698A4FB23A8} = {8E170C66-4981-437F-8471-FA704BF23210}
+		{FCEABAE5-8A41-498E-B00B-45E80FCACDED} = {8E170C66-4981-437F-8471-FA704BF23210}
+		{61CB2DD3-B5D9-49C4-BE2B-B56343F284DE} = {8E170C66-4981-437F-8471-FA704BF23210}
+		{70C37BD8-9FF1-4831-9BB1-781CCFEEA508} = {8E170C66-4981-437F-8471-FA704BF23210}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A840728-C3B7-4D40-8F05-72400B90D4C3}
 	EndGlobalSection
 EndGlobal

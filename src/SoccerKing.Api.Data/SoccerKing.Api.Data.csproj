@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <ProjectReference Include="..\SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj" />
+    <Folder Include="Repository\" />
   </ItemGroup>
 
 </Project>

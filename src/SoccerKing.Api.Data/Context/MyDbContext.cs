@@ -4,11 +4,11 @@ using SoccerKing.Api.Domain.Entities;
 
 namespace SoccerKing.Api.Data.Context
 {
-    public class MyContext : DbContext
+    public class MyDbContext : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
 
-        public MyContext(DbContextOptions<MyContext> options) : base(options) { }
+        public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

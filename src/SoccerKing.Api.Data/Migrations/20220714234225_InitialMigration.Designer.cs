@@ -9,7 +9,7 @@ using SoccerKing.Api.Data.Context;
 
 namespace SoccerKing.Api.Data.Migrations
 {
-    [DbContext(typeof(MyContext))]
+    [DbContext(typeof(MyDbContext))]
     [Migration("20220714234225_InitialMigration")]
     partial class InitialMigration
     {

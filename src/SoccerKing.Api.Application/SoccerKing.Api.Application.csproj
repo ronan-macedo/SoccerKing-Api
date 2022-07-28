@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\SoccerKing.Api.CrossCutting\SoccerKing.Api.CrossCutting.csproj" />
+    <ProjectReference Include="..\SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj" />
+    <ProjectReference Include="..\SoccerKing.Api.Service\SoccerKing.Api.Service.csproj" />
   </ItemGroup>
 
 </Project>

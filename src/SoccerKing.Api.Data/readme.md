@@ -5,3 +5,5 @@
 - Mapeia as configurações de como as entidades serão representadas no banco de dados;
 # Migrations
 - Armazena as migrations já feitas ou que serão feitas;
+# Repository
+- Encapsula a lógica de acesso aos dados, agindo como intermediário entre o Domain e o mapeamento de dados;

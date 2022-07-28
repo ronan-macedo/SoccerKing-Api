@@ -4,4 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoccerKing.Api.Data\SoccerKing.Api.Data.csproj" />
+    <ProjectReference Include="..\SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj" />
+    <ProjectReference Include="..\SoccerKing.Api.Service\SoccerKing.Api.Service.csproj" />
+  </ItemGroup>
+
 </Project>

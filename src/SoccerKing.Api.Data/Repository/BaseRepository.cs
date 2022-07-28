@@ -32,9 +32,9 @@ namespace SoccerKing.Api.Data.Repository
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("Delete error: ", e);
+                return false;
             }
         }
 
@@ -55,9 +55,9 @@ namespace SoccerKing.Api.Data.Repository
                 _dbSet.Add(item);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("Insert error: ", e);
+                return null;
             }
 
             return item;
@@ -69,9 +69,9 @@ namespace SoccerKing.Api.Data.Repository
             {
                 return await _dbSet.SingleOrDefaultAsync(p => p.Id.Equals(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("Select error: ", e);
+                return null;
             }
         }
 
@@ -81,9 +81,9 @@ namespace SoccerKing.Api.Data.Repository
             {
                 return await _dbSet.ToListAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("Select error: ", e);
+                return null;
             }
         }
 
@@ -102,9 +102,9 @@ namespace SoccerKing.Api.Data.Repository
                 _dbContext.Entry(result).CurrentValues.SetValues(item);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("Update error: ", e);
+                return null;
             }
 
             return item;

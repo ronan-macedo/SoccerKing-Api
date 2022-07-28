@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SoccerKing.Api.CrossCutting.DependencyInjection;
 
 namespace SoccerKing.Api.Application
 {
@@ -25,11 +20,17 @@ namespace SoccerKing.Api.Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            ConfigureService.ConfigureDependencesService(services);
+            ConfigureRepository.ConfigureDependencesRepository(services);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SoccerKing.Api.Application", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "SoccerKing API",
+                    Description = "Domain Driven Design Application",
+                    Version = "v 1.0.0"
+                });
             });
         }
 
@@ -40,7 +41,7 @@ namespace SoccerKing.Api.Application
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SoccerKing.Api.Application v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SoccerKing API"));
             }
 
             app.UseRouting();

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerKing.Api.Domain.Entities;
+using SoccerKing.Api.Domain.Dtos;
 using SoccerKing.Api.Domain.Interfaces.Services.User;
 using System;
 using System.Net;
@@ -12,14 +12,14 @@ namespace SoccerKing.Api.Application.Controllers
     public class LoginController : ControllerBase
     {
         [HttpPost]
-        public async Task<object> Login([FromBody] UserEntity user, [FromServices] ILoginService service)
+        public async Task<object> Login([FromBody] LoginDto login, [FromServices] ILoginService service)
         {
-            if (!ModelState.IsValid || user == null)
+            if (!ModelState.IsValid || login == null)
                 return BadRequest(ModelState);
 
             try
             {
-                object result = await service.FindByLogin(user);
+                object result = await service.FindByLogin(login);
 
                 if (result == null)
                     return NotFound();

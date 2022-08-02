@@ -21,6 +21,9 @@ namespace SoccerKing.Api.Data.Implementations
             {
                 UserEntity result = await _dbSet.SingleOrDefaultAsync(u => u.Email.Equals(email));
 
+                if (result == null)
+                    return null;
+
                 if (!BCrypt.Net.BCrypt.Verify(password, result.Password))
                     return null;
 

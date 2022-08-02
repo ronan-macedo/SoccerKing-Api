@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SoccerKing.Api.CrossCutting.DependencyInjection;
+using SoccerKing.Api.Domain.Security;
 
 namespace SoccerKing.Api.Application
 {
@@ -21,7 +23,18 @@ namespace SoccerKing.Api.Application
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureService.ConfigureDependencesService(services);
-            ConfigureRepository.ConfigureDependencesRepository(services);
+            ConfigureRepository.ConfigureDependencesRepository(services, Configuration);
+
+            // Configurações para geração da chave do token
+            SigningConfiguration signingConfigurations = new();
+            services.AddSingleton(signingConfigurations);
+
+            TokenConfiguration tokenConfiguration = new();
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                Configuration.GetSection("TokenConfiguration"))
+                .Configure(tokenConfiguration);
+            services.AddSingleton(tokenConfiguration);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

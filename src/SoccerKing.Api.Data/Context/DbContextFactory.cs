@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System;
 
 namespace SoccerKing.Api.Data.Context
 {
@@ -7,10 +9,14 @@ namespace SoccerKing.Api.Data.Context
     {
         public MyDbContext CreateDbContext(string[] args)
         {
-            // Criar as migrações            
-            string connectionString = "Server=localhost, 1433;Initial Catalog=soccerdb;User ID=SA;Password=S3nha#2021;";
+            // Criar as migrações
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("datasettings.json")
+                .Build();
+
             DbContextOptionsBuilder<MyDbContext> optionBuilder = new();
-            optionBuilder.UseSqlServer(connectionString);
+            optionBuilder.UseSqlServer(configuration.GetConnectionString("MyConn"));
             return new MyDbContext(optionBuilder.Options);
         }
     }

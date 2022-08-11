@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SoccerKing.Api.Data\SoccerKing.Api.Data.csproj" />
     <ProjectReference Include="..\SoccerKing.Api.Domain\SoccerKing.Api.Domain.csproj" />
   </ItemGroup>

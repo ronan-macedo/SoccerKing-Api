@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerKing.Api.Data.Mapping;
 using SoccerKing.Api.Domain.Entities;
+using System;
 
 namespace SoccerKing.Api.Data.Context
 {
@@ -14,6 +15,18 @@ namespace SoccerKing.Api.Data.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserEntity>(new UserMap().Configure);
+
+            modelBuilder.Entity<UserEntity>().HasData(
+                new UserEntity
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Admin",
+                    Email = "admin@email.com",
+                    Password = BCrypt.Net.BCrypt.HashPassword("123"),
+                    CreateAt = DateTime.UtcNow,
+                    UpdateAt = null
+                }
+            );
         }
     }
 }

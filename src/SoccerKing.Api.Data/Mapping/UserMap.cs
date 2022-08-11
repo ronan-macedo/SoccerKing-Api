@@ -19,7 +19,7 @@ namespace SoccerKing.Api.Data.Mapping
                 .HasMaxLength(100);
             builder.Property(u => u.Password)
                 .IsRequired()
-                .HasMaxLength(255);
+                .HasMaxLength(60);
         }
     }
 }

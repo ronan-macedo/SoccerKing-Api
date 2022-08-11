@@ -10,7 +10,7 @@ namespace SoccerKing.Api.Domain.Repository
 {
     public interface IUserRepository : IRepository<UserEntity>
     {
-        Task<UserEntity> UserInsert(UserEntity user);
-        Task<UserEntity> UserUpdate(UserEntity user);
+        Task<UserEntity> UserInsertAsync(UserEntity user);
+        Task<UserEntity> UserUpdateAsync(UserEntity user);
     }
 }

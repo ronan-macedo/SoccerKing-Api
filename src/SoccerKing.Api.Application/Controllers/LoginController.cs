@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SoccerKing.Api.Domain.Dtos;
 using SoccerKing.Api.Domain.Interfaces.Services.User;
 using System;
@@ -10,8 +11,8 @@ namespace SoccerKing.Api.Application.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
-    {
-        [HttpPost]
+    {        
+        [HttpPost, AllowAnonymous]
         public async Task<object> Login([FromBody] LoginDto login, [FromServices] ILoginService service)
         {
             if (!ModelState.IsValid || login == null)

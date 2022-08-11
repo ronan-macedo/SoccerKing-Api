@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SoccerKing.Api.Domain.Dtos.User;
 using SoccerKing.Api.Domain.Entities;
 using SoccerKing.Api.Domain.Interfaces.Services.User;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -19,8 +19,8 @@ namespace SoccerKing.Api.Application.Controllers
             _service = service;
         }
 
-        // GET: api/<UsersController>
-        [HttpGet]
+        // GET: api/<UsersController>        
+        [HttpGet, Authorize("Bearer")]
         public async Task<ActionResult> GetAll()
         {
             if (!ModelState.IsValid)
@@ -36,8 +36,8 @@ namespace SoccerKing.Api.Application.Controllers
             }
         }
 
-        // GET api/<UsersController>/{id}
-        [HttpGet("{id}", Name = "GetWithId")]
+        // GET api/<UsersController>/{id}        
+        [HttpGet("{id}", Name = "GetWithId"), Authorize("Bearer")]
         public async Task<ActionResult> Get(Guid id)
         {
             if (!ModelState.IsValid)
@@ -53,16 +53,16 @@ namespace SoccerKing.Api.Application.Controllers
             }
         }
 
-        // POST api/<UsersController>
-        [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserEntity user)
+        // POST api/<UsersController>        
+        [HttpPost, Authorize("Bearer")]
+        public async Task<ActionResult> Post([FromBody] UserDtoCreate user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                UserEntity result = await _service.Post(user);
+                UserDtoCreateResult result = await _service.Post(user);
 
                 if (result == null)
                     return BadRequest();
@@ -75,16 +75,16 @@ namespace SoccerKing.Api.Application.Controllers
             }
         }
 
-        // PUT api/<UsersController>/{id}
-        [HttpPut]
-        public async Task<ActionResult> Put([FromBody] UserEntity user)
+        // PUT api/<UsersController>/{id}        
+        [HttpPut, Authorize("Bearer")]
+        public async Task<ActionResult> Put([FromBody] UserDtoUpdate user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                UserEntity result = await _service.Put(user);
+                UserDtoUpdateResult result = await _service.Put(user);
 
                 if (result == null)
                     return BadRequest();
@@ -97,15 +97,15 @@ namespace SoccerKing.Api.Application.Controllers
             }
         }
 
-        // DELETE api/<UsersController>/{id}
-        [HttpDelete("{id}")]
+        // DELETE api/<UsersController>/{id}        
+        [HttpDelete("{id}"), Authorize("Bearer")]
         public async Task<ActionResult> Delete(Guid id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
-            {                
+            {
                 return Ok(await _service.Delete(id));
             }
             catch (Exception e)

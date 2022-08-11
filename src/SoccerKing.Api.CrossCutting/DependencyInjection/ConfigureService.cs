@@ -9,8 +9,7 @@ namespace SoccerKing.Api.CrossCutting.DependencyInjection
         public static void ConfigureDependencesService(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ILoginService, LoginService>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ILoginService, LoginService>();            
         }
     }
 }

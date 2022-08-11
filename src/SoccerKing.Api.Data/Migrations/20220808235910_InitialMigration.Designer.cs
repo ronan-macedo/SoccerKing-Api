@@ -10,7 +10,7 @@ using SoccerKing.Api.Data.Context;
 namespace SoccerKing.Api.Data.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220728031931_InitialMigration")]
+    [Migration("20220808235910_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,8 +41,8 @@ namespace SoccerKing.Api.Data.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -54,6 +54,16 @@ namespace SoccerKing.Api.Data.Migrations
                         .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c52012e0-7c56-41a8-ad10-faf14cdc0d1e"),
+                            CreateAt = new DateTime(2022, 8, 8, 23, 59, 10, 540, DateTimeKind.Utc).AddTicks(1769),
+                            Email = "admin@email.com",
+                            Name = "Admin",
+                            Password = "$2a$11$gFNtg4auVtxmTFuUhUuZS.6rlzVKqbNegK0N8bRXIObrBm2uBoyKS"
+                        });
                 });
 #pragma warning restore 612, 618
         }

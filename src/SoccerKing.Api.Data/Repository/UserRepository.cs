@@ -3,9 +3,6 @@ using SoccerKing.Api.Data.Context;
 using SoccerKing.Api.Domain.Entities;
 using SoccerKing.Api.Domain.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SoccerKing.Api.Data.Repository
@@ -18,13 +15,11 @@ namespace SoccerKing.Api.Data.Repository
             _dbSet = dbContext.Set<UserEntity>();
         }
 
-        public async Task<UserEntity> UserInsert(UserEntity user)
+        public async Task<UserEntity> UserInsertAsync(UserEntity user)
         {
             try
             {
-                if (user.Id == Guid.Empty)
-                    user.Id = Guid.NewGuid();
-
+                user.Id = Guid.NewGuid();
                 user.CreateAt = DateTime.UtcNow;
                 user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
@@ -39,7 +34,7 @@ namespace SoccerKing.Api.Data.Repository
             return user;
         }
 
-        public async Task<UserEntity> UserUpdate(UserEntity user)
+        public async Task<UserEntity> UserUpdateAsync(UserEntity user)
         {
             try
             {
@@ -50,13 +45,6 @@ namespace SoccerKing.Api.Data.Repository
 
                 user.UpdateAt = DateTime.UtcNow;
                 user.CreateAt = result.CreateAt;
-
-                if (string.IsNullOrWhiteSpace(user.Password))
-                    user.Password = result.Password;
-
-                if (!user.Password.Equals(result.Password))
-                    user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
                 _dbContext.Entry(result).CurrentValues.SetValues(user);
                 await _dbContext.SaveChangesAsync();
             }

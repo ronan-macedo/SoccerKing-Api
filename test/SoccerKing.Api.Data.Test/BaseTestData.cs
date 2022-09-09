@@ -21,7 +21,7 @@ namespace SoccerKing.Api.Data.Test
             {
                 ServiceCollection service = new();
                 service.AddDbContext<MyDbContext>(db =>
-                    db.UseSqlServer($"Server=localhost, 1433;Initial Catalog={dataBaseName};User ID=SA;Password=S3nha#2021;")
+                    db.UseNpgsql($"Host=localhost;Database={dataBaseName};Username=postgres;Password=S3nha#2021")
                     , ServiceLifetime.Transient);
 
                 ServiceProvider = service.BuildServiceProvider();

@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SoccerKing.Api.Data.Context;
 
 namespace SoccerKing.Api.Data.Migrations
@@ -15,52 +15,51 @@ namespace SoccerKing.Api.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.17")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("SoccerKing.Api.Domain.Entities.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime?>("CreateAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasColumnType("character varying(60)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
+                        .HasColumnType("character varying(60)");
 
                     b.Property<DateTime?>("UpdateAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("User");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c52012e0-7c56-41a8-ad10-faf14cdc0d1e"),
-                            CreateAt = new DateTime(2022, 8, 8, 23, 59, 10, 540, DateTimeKind.Utc).AddTicks(1769),
+                            Id = new Guid("1e998955-798b-4008-8d61-0db0cd92022b"),
+                            CreateAt = new DateTime(2022, 8, 11, 13, 54, 7, 549, DateTimeKind.Utc).AddTicks(4383),
                             Email = "admin@email.com",
                             Name = "Admin",
-                            Password = "$2a$11$gFNtg4auVtxmTFuUhUuZS.6rlzVKqbNegK0N8bRXIObrBm2uBoyKS"
+                            Password = "$2a$11$PuLEtW60Cq6ga5va5Lb0IuvEJYQ.Od.ThZsYFRosKDLUwzdp.jski"
                         });
                 });
 #pragma warning restore 612, 618

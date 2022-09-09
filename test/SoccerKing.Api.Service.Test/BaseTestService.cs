@@ -8,7 +8,7 @@ namespace SoccerKing.Api.Service.Test
     {
         public IMapper Mapper { get; set; }
 
-        public BaseTestService()
+        protected BaseTestService()
         {
             Mapper = new AutoMapperFixture().GetMapper();
         }
@@ -29,7 +29,13 @@ namespace SoccerKing.Api.Service.Test
 
             public void Dispose()
             {
+                Dispose(true);
+                GC.SuppressFinalize(this);                
+            }
 
+            protected virtual void Dispose(bool disposing)
+            {
+                
             }
         }
     }

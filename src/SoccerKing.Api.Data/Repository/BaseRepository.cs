@@ -4,6 +4,7 @@ using SoccerKing.Api.Domain.Entities;
 using SoccerKing.Api.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace SoccerKing.Api.Data.Repository
@@ -32,8 +33,9 @@ namespace SoccerKing.Api.Data.Repository
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return false;
             }
         }
@@ -55,8 +57,9 @@ namespace SoccerKing.Api.Data.Repository
                 _dbSet.Add(item);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }
 
@@ -69,8 +72,9 @@ namespace SoccerKing.Api.Data.Repository
             {
                 return await _dbSet.SingleOrDefaultAsync(p => p.Id.Equals(id));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }
         }
@@ -81,8 +85,9 @@ namespace SoccerKing.Api.Data.Repository
             {
                 return await _dbSet.ToListAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }
         }
@@ -102,8 +107,9 @@ namespace SoccerKing.Api.Data.Repository
                 _dbContext.Entry(result).CurrentValues.SetValues(item);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }
 

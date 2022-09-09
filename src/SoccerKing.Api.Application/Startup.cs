@@ -21,16 +21,28 @@ namespace SoccerKing.Api.Application
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            _enviroment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment _enviroment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            if (_enviroment.IsEnvironment("Test"))
+            {
+                Environment.SetEnvironmentVariable("POSTGRES_CONNECTION", "Host=localhost;Database=soccerdb_integration;Username=postgres;Password=S3nha#2021");
+                Environment.SetEnvironmentVariable("DB_POSTGRES", "SQLSERVER");
+                Environment.SetEnvironmentVariable("MIGRATION", "InitialMigration");
+                Environment.SetEnvironmentVariable("Audience", "company@email.com");
+                Environment.SetEnvironmentVariable("Issuer", "companyIssuer");
+                Environment.SetEnvironmentVariable("Seconds", "1800");
+            }
+
             // Realiza injeção de depedência da camada de serviços e dados
             ConfigureService.ConfigureDependencesService(services);
             ConfigureRepository.ConfigureDependencesRepository(services);
@@ -56,10 +68,12 @@ namespace SoccerKing.Api.Application
             services.AddSingleton(signingConfiguration);
 
             // Configuração do token (Audience, Issuer e Seconds)
-            TokenConfiguration tokenConfiguration = new();
-            new ConfigureFromConfigurationOptions<TokenConfiguration>(
-                Configuration.GetSection("TokenConfiguration"))
-                .Configure(tokenConfiguration);
+            TokenConfiguration tokenConfiguration = new()
+            { 
+                Audience = Environment.GetEnvironmentVariable("Audience"),
+                Issuer = Environment.GetEnvironmentVariable("Issuer"),
+                Seconds = int.Parse(Environment.GetEnvironmentVariable("Seconds"))
+            };            
             services.AddSingleton(tokenConfiguration);
 
             /**
@@ -105,7 +119,7 @@ namespace SoccerKing.Api.Application
              */
             services.AddCors(c =>
             {
-                c.AddPolicy(name: "AllowOrigin", builder =>
+                c.AddPolicy("AllowOrigin", builder =>
                 {
                     builder.AllowAnyOrigin()
                     .AllowAnyHeader()
@@ -167,7 +181,6 @@ namespace SoccerKing.Api.Application
              */
             app.UseCors("AllowOrigin");
 
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -182,7 +195,7 @@ namespace SoccerKing.Api.Application
                 using (var service = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     using (var context = service.ServiceProvider.GetService<MyDbContext>())
-                    {
+                    {                        
                         context.Database.Migrate();
                     }
                 }

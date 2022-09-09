@@ -15,9 +15,14 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DB_CONNECTION": "Server=localhost, 1433;Initial Catalog=soccerdb;User ID=SA;Password=S3nha#2021;",
-        "DATABASE": "SQLSERVER",
-        "MIGRATION": "InitialMigration"
+        "MSSQLSERVER_CONNECTION": "Server=localhost, 1433;Initial Catalog=soccerdb;User ID=SA;Password=S3nha#2021",
+        "POSTGRES_CONNECTION": "Host=localhost;Database=soccerdb;Username=postgres;Password=S3nha#2021",
+        "DB_MSSQLSERVER": "SQLSERVER",
+        "DB_POSTGRES": "SQLSERVER",
+        "MIGRATION": "InitialMigration",
+        "Audience": "company@email.com",
+        "Issuer": "companyIssuer",
+        "Seconds": "1800"
       }
     },
     "SoccerKing.Api.Application": {

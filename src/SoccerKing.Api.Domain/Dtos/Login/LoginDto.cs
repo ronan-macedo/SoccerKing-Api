@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SoccerKing.Api.Domain.Dtos
+namespace SoccerKing.Api.Domain.Dtos.Login
 {
     public class LoginDto
     {

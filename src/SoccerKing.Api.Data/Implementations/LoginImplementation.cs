@@ -4,6 +4,7 @@ using SoccerKing.Api.Data.Repository;
 using SoccerKing.Api.Domain.Entities;
 using SoccerKing.Api.Domain.Repository;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace SoccerKing.Api.Data.Implementations
@@ -29,8 +30,9 @@ namespace SoccerKing.Api.Data.Implementations
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }            
         }

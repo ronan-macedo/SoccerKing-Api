@@ -16,16 +16,13 @@ namespace SoccerKing.Api.Service.Services
     public class LoginService : ILoginService
     {
         private readonly ILoginRepository _repository;
-        private readonly SigningConfiguration _signinConfiguration;
-        private readonly TokenConfiguration _tokenConfiguration;
+        private readonly SigningConfiguration _signinConfiguration;        
 
         public LoginService(ILoginRepository repository,
-                            SigningConfiguration signinConfiguration,
-                            TokenConfiguration tokenConfiguration)
+                            SigningConfiguration signinConfiguration)
         {
             _repository = repository;
-            _signinConfiguration = signinConfiguration;
-            _tokenConfiguration = tokenConfiguration;
+            _signinConfiguration = signinConfiguration;            
         }
 
         /// <summary>
@@ -58,7 +55,7 @@ namespace SoccerKing.Api.Service.Services
             );
 
             DateTime createDate = DateTime.UtcNow;
-            DateTime expirationDate = createDate + TimeSpan.FromSeconds(_tokenConfiguration.Seconds);
+            DateTime expirationDate = createDate + TimeSpan.FromSeconds(int.Parse(Environment.GetEnvironmentVariable("Seconds")));
             JwtSecurityTokenHandler handler = new();
             string token = CreateToken(identity, createDate, expirationDate, handler);
 
@@ -77,8 +74,8 @@ namespace SoccerKing.Api.Service.Services
         {
             SecurityToken securityToken = handler.CreateToken(new SecurityTokenDescriptor
             {
-                Issuer = _tokenConfiguration.Issuer,
-                Audience = _tokenConfiguration.Audience,
+                Issuer = Environment.GetEnvironmentVariable("Issuer"),
+                Audience = Environment.GetEnvironmentVariable("Audience"),
                 SigningCredentials = _signinConfiguration.SigningCredentials,
                 Subject = identity,
                 NotBefore = createDate,

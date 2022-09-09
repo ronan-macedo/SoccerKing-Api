@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+    psqldb:
+        image: postgres
+        environment:
+          POSTGRES_PASSWORD: "S3nha#2021"     
+          restart: always    
+        volumes:
+            - C:\dados\volumes\psql\mount:/var/lib/postgresql/data
+        ports:
+            - 5432:5432    

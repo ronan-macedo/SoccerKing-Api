@@ -1,5 +1,6 @@
 {
   "ConnectionStrings": {
-    "MyConn": "Server=localhost, 1433;Initial Catalog=soccerdb;User ID=SA;Password=S3nha#2021;"
+    "MssqlConnection": "Server=localhost, 1433;Initial Catalog=soccerdb;User ID=SA;Password=S3nha#2021",
+    "PostgresConnection": "Host=localhost;Database=soccerdb;Username=postgres;Password=S3nha#2021"
   }
 }

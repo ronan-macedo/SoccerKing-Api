@@ -16,7 +16,7 @@ namespace SoccerKing.Api.Data.Context
                 .Build();
 
             DbContextOptionsBuilder<MyDbContext> optionBuilder = new();
-            optionBuilder.UseSqlServer(configuration.GetConnectionString("MyConn"));
+            optionBuilder.UseNpgsql(configuration.GetConnectionString("PostgresConnection"));
             return new MyDbContext(optionBuilder.Options);
         }
     }

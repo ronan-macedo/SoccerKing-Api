@@ -4,6 +4,7 @@ using SoccerKing.Api.Domain.Entities;
 using SoccerKing.Api.Domain.Repository;
 using System;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SoccerKing.Api.Data.Repository
 {
@@ -26,8 +27,9 @@ namespace SoccerKing.Api.Data.Repository
                 _dbSet.Add(user);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }
 
@@ -48,8 +50,9 @@ namespace SoccerKing.Api.Data.Repository
                 _dbContext.Entry(result).CurrentValues.SetValues(user);
                 await _dbContext.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace.ToString());
                 return null;
             }
 

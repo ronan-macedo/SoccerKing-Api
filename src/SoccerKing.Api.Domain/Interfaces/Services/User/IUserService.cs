@@ -12,6 +12,6 @@ namespace SoccerKing.Api.Domain.Interfaces.Services.User
         Task<IEnumerable<UserDto>> GetAll();
         Task<UserDtoCreateResult> Post(UserDtoCreate user);
         Task<UserDtoUpdateResult> Put(UserDtoUpdate user);
-        Task<bool> Delete(Guid id);
+        Task<bool> Delete(Guid id);        
     }
 }

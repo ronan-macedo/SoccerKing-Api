@@ -14,7 +14,7 @@ namespace SoccerKing.Api.CrossCutting.DependencyInjection
         public static void ConfigureDependencesRepository(IServiceCollection services)
         {
             services.AddDbContext<MyDbContext>(
-                options => options.UseSqlServer(Environment.GetEnvironmentVariable("DB_CONNECTION"))
+                options => options.UseNpgsql(Environment.GetEnvironmentVariable("POSTGRES_CONNECTION"))
             );
 
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
